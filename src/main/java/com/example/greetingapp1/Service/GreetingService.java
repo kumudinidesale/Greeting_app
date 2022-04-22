@@ -1,19 +1,14 @@
-package com.example.greetingapp1.Greeting;
+package com.example.greetingapp1.Service;
 
-import com.example.greetingapp1.Service.GreetingService;
 import com.example.greetingapp1.model.User;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-
-@RestController
-@RequestMapping("/hello")
-public class GreetingControllerApp {
-@Autowired
-private GreetingService Service;
+@Service
+public class GreetingService {
     private static final String template = "Hello %s";
     private static AtomicLong counter = new AtomicLong();
 
@@ -47,3 +42,6 @@ private GreetingService Service;
         return "Hello "+ firstName+" "+lastName+ "!";
     }
 }
+
+
+
