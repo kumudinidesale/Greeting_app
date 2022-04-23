@@ -1,7 +1,4 @@
 package com.example.greetingapp1.controller;
-
-
-
 import com.example.greetingapp1.Service.GreetingService;
 import com.example.greetingapp1.model.Greeting;
 import com.example.greetingapp1.model.User;
@@ -10,10 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
+import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class GreetingController {
@@ -61,6 +57,11 @@ public class GreetingController {
     }
     @PutMapping("/editGreetingById/{id}")
     public ResponseEntity<Greeting> editGreeting(@RequestParam String content,@PathVariable Integer id){
-        return new ResponseEntity<Greeting>(greetingService.editData(id,content),HttpStatus.OK);
+        return new ResponseEntity<Greeting>(greetingService.editDataById(id,content),HttpStatus.OK);
+    }
+    @DeleteMapping("/deleteGreetingById/{id}")
+    public ResponseEntity<String> deleteGreetingById(@PathVariable Integer id){
+        return new ResponseEntity<String>(greetingService.deleteDataById(id),HttpStatus.OK);
     }
 }
+

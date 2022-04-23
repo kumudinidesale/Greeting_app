@@ -1,5 +1,6 @@
 package com.example.greetingapp1.Service;
 
+
 import com.example.greetingapp1.model.Greeting;
 import com.example.greetingapp1.model.User;
 import com.example.greetingapp1.repository.GreetingAppRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 public class GreetingService {
@@ -37,10 +39,14 @@ public class GreetingService {
         List<Greeting>list=repo.findAll();
         return list;
     }
-    public Greeting editData(Integer id,String content) {
+    public Greeting editDataById(Integer id,String content) {
         Greeting newGreeting= new Greeting(id,String.format(template,content));
         repo.save(newGreeting);
         return newGreeting;
+    }
+    public String deleteDataById(Integer id) {
+        repo.deleteById(id);
+        return "Greeting message having id "+id+", got deleted";
     }
 }
 

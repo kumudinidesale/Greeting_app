@@ -40,5 +40,6 @@ public class User {
     public void setlName(String lName) {
         this.lName = lName;
     }
+
 }
 
