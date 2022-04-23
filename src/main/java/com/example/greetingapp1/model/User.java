@@ -1,25 +1,33 @@
 package com.example.greetingapp1.model;
 
 public class User {
-    private String firstName;
-    private String lastName;
-    public String getFirstName(){
-        return firstName;
+    private String fName;
+    private String lName;
+
+    public User() {
+
     }
 
-
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
-    }
-    public String getLastName(){
-        return lastName;
+    public User(User user) {
+        this.fName = user.fName;
+        this.lName = user.lName;
     }
 
-
-    public void setLastName(String lastName){
-        this.lastName = lastName;
+    public String getfName() {
+        return fName;
     }
 
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
 }
 
 

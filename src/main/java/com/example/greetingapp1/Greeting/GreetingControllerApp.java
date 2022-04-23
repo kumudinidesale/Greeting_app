@@ -1,6 +1,7 @@
 package com.example.greetingapp1.Greeting;
 
 import com.example.greetingapp1.Service.GreetingService;
+import com.example.greetingapp1.model.Greeting;
 import com.example.greetingapp1.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,33 +18,18 @@ private GreetingService Service;
     private static final String template = "Hello %s";
     private static AtomicLong counter = new AtomicLong();
 
-    @RequestMapping(value = {"","/","/home"})
-    public String sayHello(){
-        return "Hello from Bridgelabz!!!";
+    @GetMapping("/getGreeting")
+    public Greeting greeting(@RequestParam(value="name",defaultValue="World") String name) {
+        return new Greeting(counter.incrementAndGet(),String.format(template, name));
     }
-
-
-    @RequestMapping(value = {"/query"},method = RequestMethod.GET)
-    public String sayHello(@RequestParam(value = "name") String name){
-        return "Hello "+name+"!";
+    @PostMapping("/postGreeting")
+    public Greeting sayHello(@RequestBody Greeting greeting) {
+        return new Greeting(counter.incrementAndGet(),String.format(template, greeting.getContent()));
     }
-
-
-    @GetMapping("/param/{name}")
-    public String sayHelloParam(@PathVariable String name){
-        return "Hello " +name+"!";
-    }
-
-    @PostMapping("/post")
-    public  String sayHello(@RequestBody User user){
-        return  "Hello" +user.getFirstName()+" "+user.getLastName() + "!";
-    }
-
-
-
-    @PutMapping("/put/{firstName}")
-    public  String sayHello(@PathVariable String firstName,
-                            @RequestParam(value = "lastName") String lastName){
-        return "Hello "+ firstName+" "+lastName+ "!";
+    @PutMapping("/putMapping/{counter}")
+    public Greeting sayHello(@PathVariable long counter,@RequestParam (value="content") String content) {
+        return new Greeting(counter,String.format(template, content));
     }
 }
+
+
