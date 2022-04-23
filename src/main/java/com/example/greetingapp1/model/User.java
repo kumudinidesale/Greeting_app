@@ -1,6 +1,14 @@
 package com.example.greetingapp1.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class User {
+    @Id
+    @GeneratedValue
+    private Integer id;
     private String fName;
     private String lName;
 
@@ -8,7 +16,14 @@ public class User {
 
     }
 
+    public User(String fName, String lName) {
+        super();
+        this.fName = fName;
+        this.lName = lName;
+    }
+
     public User(User user) {
+        this.id = user.id;
         this.fName = user.fName;
         this.lName = user.lName;
     }
@@ -29,6 +44,4 @@ public class User {
         this.lName = lName;
     }
 }
-
-
 

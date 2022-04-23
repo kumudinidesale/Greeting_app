@@ -1,6 +1,7 @@
 package com.example.greetingapp1.Service;
 
 
+
 import com.example.greetingapp1.model.Greeting;
 import com.example.greetingapp1.model.User;
 import com.example.greetingapp1.repository.GreetingAppRepository;
@@ -27,6 +28,10 @@ public class GreetingService {
         Greeting newGreeting=new Greeting(String.format(template,greeting.getContent()));
         repo.save(newGreeting);
         return newGreeting;
+    }
+    public String getData(Integer id) {
+        Greeting newGreeting=repo.getById(id);
+        return newGreeting.getContent();
     }
 }
 
